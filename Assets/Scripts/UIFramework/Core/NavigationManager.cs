@@ -7,9 +7,9 @@ using UnityEngine.UI;
 namespace UIFramework
 {
     [DisallowMultipleComponent]
-    public class MenuManager : MonoBehaviour
+    public class NavigationManager : MonoBehaviour
     {
-        public static MenuManager Instance { get; private set; }
+        public static NavigationManager Instance { get; private set; }
 
         
         

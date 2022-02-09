@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace UIFramework
 {
-    public class MenuController : MonoBehaviour
+    public class UIManager : MonoBehaviour
     {
 
         
