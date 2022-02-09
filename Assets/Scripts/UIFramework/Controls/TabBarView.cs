@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UI.UIElements
+namespace UIFramework
 {
     public class TabBarView : MonoBehaviour
     {

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using TMPro;
 
-namespace UI
+namespace UIFramework
 {
     /// <summary>
     /// 

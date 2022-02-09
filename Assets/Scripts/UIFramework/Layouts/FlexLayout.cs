@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace UI.Layouts
+namespace UIFramework
 {
     public class FlexLayout : LayoutGroup
     {

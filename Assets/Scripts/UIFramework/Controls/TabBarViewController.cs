@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace UI.UIElements
+namespace UIFramework
 {
     public class TabBarViewController : MonoBehaviour
     {

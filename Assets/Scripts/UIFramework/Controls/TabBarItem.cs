@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace UI.UIElements
+namespace UIFramework
 {
     public class TabBarItem : MonoBehaviour
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UI
+namespace UIFramework
 {
     public class MenuController : MonoBehaviour
     {
