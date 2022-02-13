@@ -6,113 +6,122 @@ using UnityEngine.UI;
 
 namespace UIFramework
 {
-    [DisallowMultipleComponent]
-    public class NavigationManager : MonoBehaviour
+    public class NavigationManager : ManagerBase<NavigationManager>
     {
-        public static NavigationManager Instance { get; private set; }
+        
+        private Stack<CanvasView> _viewStack;
 
+        private RectTransform _viewContainer;
         
         
-        [SerializeField] private View _initialView;
+        public CanvasView RootViewController { get; }
         
-        [SerializeField] private RectTransform _viewContainer;
-
-        [SerializeField] private View[] _viewConfigs;
+        public CanvasView TopViewController { get; }
         
-        [SerializeField] private bool _debug;
+        public CanvasView[] ViewControllers { get; }
         
         
-        private Stack<View> _viewHistory;
-
-        
-        
-
         private void Awake()
         {
-            if (Instance == null) {
-                Instance = this;
-            }
-            
-            if (Instance != null && Instance != this) {
-                LogWarning($"Another instance of {this} has already been registered for this scene, destroying this one");
-                Destroy(gameObject);
-            }
-            
+            _instance = this;
+
+            _viewStack = new Stack<CanvasView>();
+
         }
 
 
-        private void OnDestroy()
-        {
-            Instance = null;
-        }
 
 
-        private void Configure()
+
+        public void Pop(bool animated = true, Action onComplete = null)
         {
             
         }
 
-
-        
-        
-        
-        
-        
-        
-        public void ShowView(View view)
+        public void PopTo(CanvasView viewController, bool animated = true, Action onComplete = null)
         {
-            view.Show();
+            
+        }
 
-            if (view.HidePrevious && _viewHistory.Count > 0) {
-                //  Get the last item from the stack.
-                View previousView = _viewHistory.Peek();
-                if (previousView != null) {
-                    previousView.Hide();
-                }
-            }
+        public void PopToRoot(bool animated = true, Action onComplete = null)
+        {
+            
+        }
 
-            if (view.RememberStackHistory) {
-                //  Add view to the view history stack.
-                _viewHistory.Push(view);
-            }
+        public void Pusho(CanvasView viewController, bool animated = true, Action onComplete = null)
+        {
+            
         }
 
 
-        public void HideView()
+        protected void ViewDidLoad()
         {
             
         }
         
+
         
-        public void ShowPreviousView()
-        {
-            //  We add the initial page to the history stack during Start.
-            if (_viewHistory.Count > 1)     
-            {
-                //  Remove current view from the stack.
-                View previousView = _viewHistory.Pop();
-                previousView.Hide();
-
-                View currentView = _viewHistory.Peek();
-                currentView.Show();
-            }
-            else
-            {
-                LogWarning("Trying to go back when there is no more in the history stack.");
-            }
-        }
-
+        
+        
+        
+        
+        // public void ShowView(CanvasView view)
+        // {
+        //     view.Show();
+        //
+        //     if (view.HidePrevious && _viewStack.Count > 0) {
+        //         //  Get the last item from the stack.
+        //         CanvasView previousView = _viewStack.Peek();
+        //         if (previousView != null) {
+        //             previousView.Hide();
+        //         }
+        //     }
+        //
+        //     if (view.RememberStackHistory) {
+        //         //  Add view to the view history stack.
+        //         _viewStack.Push(view);
+        //     }
+        // }
+        //
+        //
+        // public void HideView()
+        // {
+        //     
+        // }
+        //
+        //
+        // public void ShowPreviousView()
+        // {
+        //     //  We add the initial page to the history stack during Start.
+        //     if (_viewStack.Count > 1)     
+        //     {
+        //         //  Remove current view from the stack.
+        //         CanvasView previousView = _viewStack.Pop();
+        //         previousView.Hide();
+        //
+        //         CanvasView currentView = _viewStack.Peek();
+        //         currentView.Show();
+        //     }
+        //     else
+        //     {
+        //         LogWarning("Trying to go back when there is no more in the history stack.");
+        //     }
+        // }
+        //
 
 
 
         #region Debug
-        private void Log(string msg)
+        
+        [SerializeField] private bool _debug;
+        
+        protected void Log(string msg)
         {
             if (!_debug) return;
             Debug.Log($"[<b>{GetType().Name}</b>]: {msg}");
         }
 
-        private void LogWarning(string msg)
+        protected void LogWarning(string msg)
         {
             if (!_debug) return;
             Debug.LogWarning($"[<b>{GetType().Name}</b>]: {msg}");

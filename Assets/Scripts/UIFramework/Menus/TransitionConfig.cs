@@ -4,23 +4,42 @@ using UnityEngine;
 
 namespace UIFramework
 {
-    [Serializable]
-    public abstract class TransitionConfig : ITransition
+
+    public abstract class TransitionConfig : ScriptableObject,  ITransition
     {
-        [SerializeField] protected string _label;
         
         [SerializeField] protected float _delay = 0.0f;
         
-        [SerializeField] protected float _time = 0.5f;
+        [SerializeField] protected float _duration = 0.3f;
 
 
-        protected float duration {
-            get => _delay + _time;
+
+
+        public abstract IEnumerator ExecuteTransition(CanvasView view, Action onComplete);
+
+        
+        
+        
+        // private static Vector3 GetPointOnRectEdge(RectTransform rect, Vector2 dir)
+        // {
+        //     if (rect == null)
+        //         return Vector3.zero;
+        //     if (dir != Vector2.zero)
+        //         dir /= Mathf.Max(Mathf.Abs(dir.x), Mathf.Abs(dir.y));
+        //     dir = rect.rect.center + Vector2.Scale(rect.rect.size, dir * 0.5f);
+        //     return dir;
+        // }
+    }
+
+
+
+    public class InstantTransition : TransitionConfig
+    {
+        
+        
+        public override IEnumerator ExecuteTransition(CanvasView view, Action onComplete)
+        {
+            yield return null;
         }
-
-
-        public abstract IEnumerator StartTransitionAnimation(RectTransform rectTransform, Action onComplete);
-
-
     }
 }

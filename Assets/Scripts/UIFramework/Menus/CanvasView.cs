@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,9 +18,10 @@ namespace UIFramework
         
         private List<PanelView> _panelViews;
 
-        
 
-        
-
+        private void Awake()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

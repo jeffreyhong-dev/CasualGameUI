@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -8,9 +9,14 @@ namespace UIFramework
     public class ViewConfig : ScriptableObject, IViewConfig
     {
         private const string k_menu = "uGUI Framework/View Configuration";
-        
-        
-        [SerializeField] private string _title;
+
+        [Serializable]
+        public class Configuration
+        {
+            public CanvasView view;
+            
+        }
+
         
         [SerializeField] private bool _hidePrevious = true;
         
@@ -20,7 +26,7 @@ namespace UIFramework
         
         [SerializeField] private TransitionConfig _hideTransition;
         
-        [SerializeField] private List<View> _configurations;
+        [SerializeField] private List<Configuration> _configurations;
         
         
         public bool HidePrevious  { get => _hidePrevious; }
@@ -28,7 +34,12 @@ namespace UIFramework
         public bool RememberStackHistory { get => _rememberStackHistory; }
 
 
-        
+
+
+        private void LoadViewConfig()
+        {
+            
+        }
         
         
         
